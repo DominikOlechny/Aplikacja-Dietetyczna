@@ -142,5 +142,41 @@ def CPM():
     else:
         PPM = 655.1 + (9.563 * Weight) + (1.85 * Hight) - (4.676 * Age)
     CPM=PPM*Movement
-    print(CPM , "KCAL")
-CPM()
+    return CPM
+
+def PAL(): #czyli zapotrzebowanie na białko
+    Weight = weight()
+    Movement = movement()
+    if(Movement == 1):
+        Pal = 1.2
+    elif(Movement == 2):
+        Pal = 1.3
+    elif(Movement == 3):
+        Pal = 1.4
+    elif(Movement == 4):
+        Pal = 1.5
+    elif(Movement == 5):
+        Pal = 1.7
+    elif(Movement == 6):
+        Pal = 2.0
+    else:
+        print("error")
+        return
+    bialko = Pal*Weight
+    return bialko
+
+def fats(): #Tłuszcze liczymy
+    #1g tłuszczu = 9 KCAL
+    cpm = CPM()
+    Fats = (cpm-(cpm*0.80))/9
+    return Fats
+
+if __name__ == "__main__":
+    print("Zapotrzebowanie kaloryczne:")
+    print(CPM())
+
+    print("Zapotrzebowanie na białko:")
+    print(PAL())
+
+    print("Zapotrzebowanie na tłuszcze:")
+    print(fats())
