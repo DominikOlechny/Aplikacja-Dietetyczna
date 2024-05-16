@@ -1,4 +1,4 @@
-def gender():
+def get_gender():
 #CPM = PPM x współczynnik aktywności fizycznej
 #Wartość współczynnika aktywności fizycznej	Stopień aktywności fizycznej
 #1,2	brak (osoba chora, leżąca w łóżku)
@@ -35,52 +35,41 @@ def gender():
             print("Błąd: Podaj poprawne dane (wybierz 1 lub 2)")
             continue  # Kontynuuj pętlę, aby ponownie zapytać o poprawną wartość
 
-def weight():
-    print("Podaj swoją wagę")
-    Weight = input()
+def get_weight():
+    while True:
+        try:
+            Weight = float(input("Podaj swoją wagę: "))
+            if Weight > 0:
+                return Weight  # Zwróć poprawną wagę
+            else:
+                print("Podaj prawidłową wagę (wartość powinna być większa od 0)")
+        except ValueError:
+            print("Błąd: Podaj prawidłową wagę (użyj cyfr)")  # Komunikat o błędzie, jeśli wprowadzono nieprawidłowe dane
 
-    try:
-        Weight = float(Weight)
-        if Weight <= 0:
-            print("Podaj prawidłową wagę (wartość powinna być większa od 0)")
-            return weight()  # Rekurencyjnie wywołaj funkcję, aby poprosić ponownie o poprawną wagę
-        else:
-            return Weight  # Zwróć poprawną wagę
-    except ValueError:
-        print("Błąd: Podaj prawidłową wagę (użyj cyfr)")  # Komunikat o błędzie, jeśli wprowadzono nieprawidłowe dane
-        return weight()  # Rekurencyjnie wywołaj funkcję, aby poprosić ponownie o poprawną wagę
     
-def hight():
-    print("Podaj swój wzrost")
-    Hight = input()
-
-    try:
-        Hight = float(Hight)
-        if Hight <= 0:
-            print("Podaj prawidłowy wzrost (wartość powinna być większa od 0)")
-            return hight()  # Rekurencyjnie wywołaj funkcję, aby poprosić ponownie o poprawny wzrost
-        else:
-            return Hight  # Zwróć poprawny wzrost
-    except ValueError:
-        print("Podaj prawidłowy wzrost (użyj cyfr)")  # Komunikat o błędzie, jeśli wprowadzono nieprawidłowe dane
-        return hight()  # Rekurencyjnie wywołaj funkcję, aby poprosić ponownie o poprawny wzrost
+def get_height():
+    while True:
+        try:
+            Height = float(input("Podaj swój wzrost: "))
+            if Height > 0:
+                return Height  # Zwróć poprawny wzrost
+            else:
+                print("Podaj prawidłowy wzrost (wartość powinna być większa od 0)")
+        except ValueError:
+            print("Podaj prawidłowy wzrost (użyj cyfr)")  # Komunikat o błędzie, jeśli wprowadzono nieprawidłowe dane
     
-def age():
-    print("Podaj swój wiek")
-    Age = input()
+def get_age():
+    while True:
+        try:
+            Age = int(input("Podaj swój wiek: "))
+            if Age > 0:
+                return Age  # Zwróć poprawny wiek
+            else:
+                print("Podaj wiek, wartość musi być większa niż 0")
+        except ValueError:
+            print("Nieprawidłowe dane podaj swój wiek w liczbach")  # Komunikat o błędzie, jeśli wprowadzono nieprawidłowe dane
 
-    try:
-        Age = float(Age)
-        if Age <= 0:
-            print("Podaj wiek, wartosc musi być większa niż 0")
-            return age()  # Rekurencyjnie wywołaj funkcję, aby poprosić ponownie o poprawny wzrost
-        else:
-            return Age  # Zwróć poprawny wzrost
-    except ValueError:
-        print("Nieprawidłowe dane podaj swój wiek w liczbach")  # Komunikat o błędzie, jeśli wprowadzono nieprawidłowe dane
-        return age()  # Rekurencyjnie wywołaj funkcję, aby poprosić ponownie o poprawny wzrost
-
-def movement():
+def get_movement():
     print("1 - brak (osoba chora, leżąca w łóżku")
     print("2 - mała (osoba wykonująca pracę siedzącą")
     print("3 - umiarkowana (osoba wykonująca pracę na stojąco")
@@ -127,56 +116,43 @@ def movement():
             continue  # Kontynuuj pętlę, aby ponownie zapytać o poprawną wartość
 
 
-def CPM():
+def get_CPM(gender, weight, hight, age, activity):
     #PPM
     #dla kobiet: PPM = 655,1 + (9,563 x masa ciała w kilogramach) + (1,85 x wzrost w centymetrach) – (4,676 x wiek w latach)
     #dla mężczyzn: PPM = 66,473 + (13,752 x masa ciała w kilogramach) + (5,003 x wzrost w centymetrach) – (6,775 x wiek w latach)1
-    Gender = gender()
-    Weight = weight()
-    Hight = hight()
-    Age = age()
-    Movement = movement()
-
-    if(Gender == 1):
-        PPM = 66.473 + (13.752 * Weight) + (5.003 * Hight) - (6.775 * Age)
+   
+    if(gender == 1):
+        PPM = 66.473 + (13.752 * weight) + (5.003 * hight) - (6.775 * age)
     else:
-        PPM = 655.1 + (9.563 * Weight) + (1.85 * Hight) - (4.676 * Age)
-    CPM=PPM*Movement
+        PPM = 655.1 + (9.563 * weight) + (1.85 * hight) - (4.676 * age)
+    CPM=PPM*activity
     return CPM
 
-def PAL(): #czyli zapotrzebowanie na białko
-    Weight = weight()
-    Movement = movement()
-    if(Movement == 1):
-        Pal = 1.2
-    elif(Movement == 2):
-        Pal = 1.3
-    elif(Movement == 3):
-        Pal = 1.4
-    elif(Movement == 4):
-        Pal = 1.5
-    elif(Movement == 5):
-        Pal = 1.7
-    elif(Movement == 6):
-        Pal = 2.0
-    else:
-        print("error")
-        return
-    bialko = Pal*Weight
-    return bialko
+def get_PAL(weight, activity):
+    # Użyj przekazanych argumentów zamiast ponownego wywoływania funkcji
+    # Mapowanie współczynników aktywności na odpowiadające im współczynniki białka
+    pal_factors = {
+        1.2: 1.2, 1.4: 1.3, 1.6: 1.4, 1.75: 1.5, 2.0: 1.7, 2.4: 2.0
+    }
+    # Oblicz dzienne zapotrzebowanie na białko
+    protein_requirement = pal_factors[activity] * weight
+    return protein_requirement
 
-def fats(): #Tłuszcze liczymy
-    #1g tłuszczu = 9 KCAL
-    cpm = CPM()
-    Fats = (cpm-(cpm*0.80))/9
-    return Fats
+def get_fats(CPM):
+    # Poprawienie obliczania dziennego zapotrzebowania na tłuszcz
+    fats = (CPM - (CPM * 0.75)) / 9
+    return fats
 
-if __name__ == "__main__":
-    print("Zapotrzebowanie kaloryczne:")
-    print(CPM())
+gender = get_gender()
+weight = get_weight()
+height = get_height()
+age = get_age()
+activity = get_movement()
 
-    print("Zapotrzebowanie na białko:")
-    print(PAL())
-
-    print("Zapotrzebowanie na tłuszcze:")
-    print(fats())
+CPM = get_CPM(gender, weight, height, age, activity)
+protein_requirement = get_PAL(weight, activity)
+fats = get_fats(CPM)
+    
+print("Zapotrzebowanie kaloryczne:", CPM)
+print("Zapotrzebowanie na białko:", protein_requirement)
+print("Zapotrzebowanie na tłuszcze:", fats)
