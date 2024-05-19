@@ -86,7 +86,7 @@ def get_movement():
         try:
             Movement = int(Movement)
         except ValueError:
-            print("Błąd: Podaj poprawne dane (wybierz 1 lub 2)")
+            print("Błąd: Podaj poprawne dane (wybierz 1 lub 6)")
             continue  # Kontynuuj pętlę, aby ponownie zapytać o poprawną wartość
 
         # Sprawdzenie aktywnosci
@@ -145,3 +145,20 @@ def get_fats(CPM): #Dzienne zapotrzebowanie na tłuszcz
 def get_carbs(CPM):
     carbs = CPM*0.5/4 #ze wzoru kcal*50%/4
     return carbs
+
+def info():
+    gender = get_gender()
+    weight = get_weight()
+    height = get_height()
+    age = get_age()
+    activity = get_movement()
+
+    CPM = get_CPM(gender, weight, height, age, activity)
+    protein_requirement = get_PAL(weight, activity)
+    fats = get_fats(CPM)
+    carbs = get_carbs(CPM)
+
+    print(f"\nTwoje całkowite zapotrzebowanie kaloryczne: {CPM:} kcal")
+    print(f"Dzienne zapotrzebowanie na białko: {protein_requirement:} g")
+    print(f"Dzienne zapotrzebowanie na tłuszcze: {fats:} g")
+    print(f"Dzienne zapotrzebowanie na węglowodany: {carbs:} g")

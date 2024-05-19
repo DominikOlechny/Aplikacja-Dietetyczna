@@ -50,21 +50,22 @@ def calculate_totals(selected_products):
 # Lista na wybrane produkty
 selected_products = []
 
-
+#użycie
 def choose_produts():
     while(True):
-        product = input("Podaj nazwe poduktuktu który jest dodać do listy, jeśli chcesz przestac dodawac wpisz stop")
+        product = input("Podaj nazwe poduktuktu który jest dodać do listy, jeśli chcesz przestac dodawac wpisz stop: ")
         if(product == "stop"):
             return
         else:
             select_product(product, selected_products)
 
-choose_produts()
 
-def view_nutriens(selected_products):
+def view_nutriens():
     totals = calculate_totals(selected_products)
     print("Suma wartości odżywczych dla wybranych produktów:")
     print(f'Kalorie: {totals["KCAL"]}')
     print(f'Węglowodany: {totals["WEGLOWODANY"]}')
     print(f'Białko: {totals["BIALKO"]}')
     print(f'Tłuszcz: {totals["TLUSZCZ"]}')
+
+
