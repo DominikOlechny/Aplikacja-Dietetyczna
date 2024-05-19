@@ -1,4 +1,6 @@
+
 def get_gender():
+
 #CPM = PPM x współczynnik aktywności fizycznej
 #Wartość współczynnika aktywności fizycznej	Stopień aktywności fizycznej
 #1,2	brak (osoba chora, leżąca w łóżku)
@@ -142,17 +144,3 @@ def get_fats(CPM):
     # Poprawienie obliczania dziennego zapotrzebowania na tłuszcz
     fats = (CPM - (CPM * 0.75)) / 9
     return fats
-
-gender = get_gender()
-weight = get_weight()
-height = get_height()
-age = get_age()
-activity = get_movement()
-
-CPM = get_CPM(gender, weight, height, age, activity)
-protein_requirement = get_PAL(weight, activity)
-fats = get_fats(CPM)
-    
-print("Zapotrzebowanie kaloryczne:", CPM)
-print("Zapotrzebowanie na białko:", protein_requirement)
-print("Zapotrzebowanie na tłuszcze:", fats)
