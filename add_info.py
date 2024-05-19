@@ -1,6 +1,3 @@
-
-def get_gender():
-
 #CPM = PPM x współczynnik aktywności fizycznej
 #Wartość współczynnika aktywności fizycznej	Stopień aktywności fizycznej
 #1,2	brak (osoba chora, leżąca w łóżku)
@@ -12,6 +9,10 @@ def get_gender():
 
 #dla kobiet: PPM = 655,1 + (9,563 x masa ciała w kilogramach) + (1,85 x wzrost w centymetrach) – (4,676 x wiek w latach)
 #dla mężczyzn: PPM = 66,473 + (13,752 x masa ciała w kilogramach) + (5,003 x wzrost w centymetrach) – (6,775 x wiek w latach)
+
+def get_gender():
+
+
     print("PODAJ PŁEĆ")
     print("1 - mężczyzna")
     print("2 - kobieta")
@@ -88,7 +89,7 @@ def get_movement():
             print("Błąd: Podaj poprawne dane (wybierz 1 lub 2)")
             continue  # Kontynuuj pętlę, aby ponownie zapytać o poprawną wartość
 
-        # Sprawdzenie wyboru płci
+        # Sprawdzenie aktywnosci
         if Movement == 1:
             print("brak (osoba chora, leżąca w łóżku)")
             Activity = float(1.2)
@@ -119,7 +120,7 @@ def get_movement():
 
 
 def get_CPM(gender, weight, hight, age, activity):
-    #PPM
+    #PPM przemiana materii
     #dla kobiet: PPM = 655,1 + (9,563 x masa ciała w kilogramach) + (1,85 x wzrost w centymetrach) – (4,676 x wiek w latach)
     #dla mężczyzn: PPM = 66,473 + (13,752 x masa ciała w kilogramach) + (5,003 x wzrost w centymetrach) – (6,775 x wiek w latach)1
    
@@ -128,19 +129,19 @@ def get_CPM(gender, weight, hight, age, activity):
     else:
         PPM = 655.1 + (9.563 * weight) + (1.85 * hight) - (4.676 * age)
     CPM=PPM*activity
-    return CPM
+    return CPM #ilosc kilokalorii
 
-def get_PAL(weight, activity):
-    # Użyj przekazanych argumentów zamiast ponownego wywoływania funkcji
-    # Mapowanie współczynników aktywności na odpowiadające im współczynniki białka
+def get_PAL(weight, activity): #Dzienne zapotrzebowanie na białko
     pal_factors = {
         1.2: 1.2, 1.4: 1.3, 1.6: 1.4, 1.75: 1.5, 2.0: 1.7, 2.4: 2.0
     }
-    # Oblicz dzienne zapotrzebowanie na białko
     protein_requirement = pal_factors[activity] * weight
     return protein_requirement
 
-def get_fats(CPM):
-    # Poprawienie obliczania dziennego zapotrzebowania na tłuszcz
+def get_fats(CPM): #Dzienne zapotrzebowanie na tłuszcz
     fats = (CPM - (CPM * 0.75)) / 9
     return fats
+
+def get_carbs(CPM):
+    carbs = CPM*0.5/4 #ze wzoru kcal*50%/4
+    return carbs
