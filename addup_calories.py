@@ -50,7 +50,7 @@ def calculate_totals(selected_products):
 # Lista na wybrane produkty
 selected_products = []
 
-# Przykładowe użycie
+
 def choose_produts():
     while(True):
         product = input("Podaj nazwe poduktuktu który jest dodać do listy, jeśli chcesz przestac dodawac wpisz stop")
