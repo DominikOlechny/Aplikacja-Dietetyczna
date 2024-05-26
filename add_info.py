@@ -12,8 +12,6 @@
 import pandas as pd
 from login_panel import login_user
 
-path_users_info = 'users_info.csv'
-users = pd.read_csv(path_users_info, delimiter=';')
 
 def get_gender():
 
