@@ -1,9 +1,13 @@
-from login_panel import login_user
-from addup_calories import choose_produts, view_nutriens
+from login_panel import readCSV, login_user
+from addup_calories import choose_produts, view_nutriens, save_totals
 from add_info import info
 
+
+
 def main_menu():
-    login = login_user()  # Pobierz login użytkownika po zalogowaniu
+    path_users_info = 'users_info.csv'
+    users = readCSV()
+    login, cpm, protein, fats, carbs, total_cpm, total_carbs, total_pal, total_fats = login_user(users)
     while True:
         print("Główne Menu")
         print("1. Oblicz swoje zapotrzebowanie kaloryczne")
@@ -14,15 +18,14 @@ def main_menu():
         
         if choice == '1':
             print("Wprowadź informację o sobie")
-            info(login)
+            info(login, path_users_info)
         elif choice == '2':
             print("Oblicz swój koszyk zakupów")
-            view_nutriens()
+            choose_produts()
+            totals = view_nutriens()
+            save_totals(totals, login)
         elif choice == '3':
             print("Dziękujemy za skorzystanie z menu. Do widzenia!")
             break
         else:
             print("Nieprawidłowy wybór, spróbuj ponownie.")
-
-if __name__ == "__main__":
-    main_menu()

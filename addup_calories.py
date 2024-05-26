@@ -1,6 +1,7 @@
 #Dane do CSV POBIERANE Z STĄD https://cloud-d.edupage.org/cloud/TABELA_WARTOSCI_ODZYWCZYCH.pdf?z%3APDDb3bKBXlY%2FWjIPy4GrEnwqpQPbkRKS5bz%2B61bSkv9GuOPTeTEfb6uDNr0VpRuj
 
 import pandas as pd
+from login_panel import readCSV, login_user
 
 # Wczytaj dane z pliku CSV
 file_path = 'nutrition_table.csv'
@@ -50,15 +51,13 @@ def calculate_totals(selected_products):
 # Lista na wybrane produkty
 selected_products = []
 
-#użycie
 def choose_produts():
-    while(True):
-        product = input("Podaj nazwe poduktuktu który jest dodać do listy, jeśli chcesz przestac dodawac wpisz stop: ")
-        if(product == "stop"):
-            return
+    while True:
+        product = input("Podaj nazwę produktu, który chcesz dodać do listy (wpisz 'stop', aby zakończyć): ")
+        if product.lower() == "stop":
+            break
         else:
             select_product(product, selected_products)
-
 
 def view_nutriens():
     totals = calculate_totals(selected_products)
@@ -67,5 +66,16 @@ def view_nutriens():
     print(f'Węglowodany: {totals["WEGLOWODANY"]}')
     print(f'Białko: {totals["BIALKO"]}')
     print(f'Tłuszcz: {totals["TLUSZCZ"]}')
+    return totals
 
-
+def save_totals(totals, login):
+    path_users_info = 'users_info.csv'
+    users = pd.read_csv(path_users_info, delimiter=';')
+    
+    users.loc[users['Login'] == login, 'Total_cpm'] = totals["KCAL"]
+    users.loc[users['Login'] == login, 'Total_carbs'] = totals["WEGLOWODANY"]
+    users.loc[users['Login'] == login, 'Total_pal'] = totals["BIALKO"]
+    users.loc[users['Login'] == login, 'Total_fats'] = totals["TLUSZCZ"]
+    
+    users.to_csv(path_users_info, sep=';', index=False)
+    print("Wartości odżywcze zostały zapisane do pliku CSV.")
