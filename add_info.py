@@ -9,6 +9,11 @@
 
 #dla kobiet: PPM = 655,1 + (9,563 x masa ciała w kilogramach) + (1,85 x wzrost w centymetrach) – (4,676 x wiek w latach)
 #dla mężczyzn: PPM = 66,473 + (13,752 x masa ciała w kilogramach) + (5,003 x wzrost w centymetrach) – (6,775 x wiek w latach)
+import pandas as pd
+from login_panel import login_user
+
+path_users_info = 'users_info.csv'
+users = pd.read_csv(path_users_info, delimiter=';')
 
 def get_gender():
 
@@ -146,7 +151,9 @@ def get_carbs(CPM):
     carbs = CPM*0.5/4 #ze wzoru kcal*50%/4
     return carbs
 
-def info():
+def info(login, users):
+    users = pd.read_csv(path_users_info, delimiter=';')
+    
     gender = get_gender()
     weight = get_weight()
     height = get_height()
@@ -157,8 +164,3 @@ def info():
     protein_requirement = get_PAL(weight, activity)
     fats = get_fats(CPM)
     carbs = get_carbs(CPM)
-
-    print(f"\nTwoje całkowite zapotrzebowanie kaloryczne: {CPM:} kcal")
-    print(f"Dzienne zapotrzebowanie na białko: {protein_requirement:} g")
-    print(f"Dzienne zapotrzebowanie na tłuszcze: {fats:} g")
-    print(f"Dzienne zapotrzebowanie na węglowodany: {carbs:} g")
