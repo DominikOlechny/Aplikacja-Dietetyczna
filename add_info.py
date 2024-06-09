@@ -1,3 +1,5 @@
+#czesc aplikacji opowiedzialna za obliczanie makra dla zalogowanego uzytkownika.
+
 #CPM = PPM x współczynnik aktywności fizycznej
 #Wartość współczynnika aktywności fizycznej	Stopień aktywności fizycznej
 #1,2	brak (osoba chora, leżąca w łóżku)

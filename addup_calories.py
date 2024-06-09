@@ -1,4 +1,6 @@
+#czesc apliakcji odpowiedzialna za obliczanie koszyka zakupowego uzytkownika
 #Dane do CSV POBIERANE Z STĄD https://cloud-d.edupage.org/cloud/TABELA_WARTOSCI_ODZYWCZYCH.pdf?z%3APDDb3bKBXlY%2FWjIPy4GrEnwqpQPbkRKS5bz%2B61bSkv9GuOPTeTEfb6uDNr0VpRuj
+
 
 import pandas as pd
 from login_panel import readCSV, login_user

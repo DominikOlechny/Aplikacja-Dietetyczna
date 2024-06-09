@@ -1,3 +1,5 @@
+#czesc aplikacji odpowiedzialna za generacje wykresow makra
+
 from login_panel import readCSV
 from add_info import info
 import matplotlib.pyplot as plt 

@@ -1,3 +1,5 @@
+#pierwsza warstwa aplikacji odpowiedzialna za logowanie do apki lub tworzenie uzytkownika.
+
 import pandas as pd
 
 def readCSV(): #odczyt pliku CSV

@@ -1,4 +1,5 @@
-#Import potrzebnych funckji z innych plikow .py
+#menu bglowne
+
 from login_panel import readCSV, login_user
 from addup_calories import choose_produts, view_nutriens, save_totals
 from add_info import info
