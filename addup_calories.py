@@ -29,6 +29,24 @@ def select_product(product_name, selected_products):
         else:
             print("Niepoprawny wybór.")
 
+# Funkcja do usuwania produktu z listy
+def remove_product(product_name, selected_products):
+    # Wyświetlanie listy aktualnie wybranych produktów
+    if not selected_products:
+        print("Lista wybranych produktów jest pusta.")
+        return
+
+    print("Aktualnie wybrane produkty:")
+    for i, product in enumerate(selected_products):
+        print(f"{i + 1}. {product['Nazwa']}")
+
+    matching_products = [product for product in selected_products if product['Nazwa'].lower() == product_name.lower()]
+    if len(matching_products) == 0:
+        print(f'Produkt "{product_name}" nie został znaleziony na liście.')
+    else:
+        selected_products.remove(matching_products[0])
+        print(f'Produkt "{product_name}" został usunięty.')
+
 # Funkcja do sumowania wartości odżywczych
 def calculate_totals(selected_products):
     total_cpm = 0
@@ -48,16 +66,30 @@ def calculate_totals(selected_products):
         "BIALKO": total_pal,
         "TLUSZCZ": total_fats
     }
+
 # Lista na wybrane produkty
 selected_products = []
 
 def choose_produts():
     while True:
-        product = input("Podaj nazwę produktu, który chcesz dodać do listy (wpisz 'stop', aby zakończyć): ")
-        if product.lower() == "stop":
+        action = input("Wpisz 'dodaj', aby dodać produkt, 'usuń', aby usunąć produkt z listy, 'wyświetl' aby zobaczyć aktualną listę (wpisz 'stop', aby zakończyć): ")
+        if action.lower() == "stop":
             break
-        else:
+        elif action.lower() == "dodaj":
+            product = input("Podaj nazwę produktu, który chcesz dodać do listy: ")
             select_product(product, selected_products)
+        elif action.lower() == "usuń":
+            product = input("Podaj nazwę produktu, który chcesz usunąć z listy: ")
+            remove_product(product, selected_products)
+        elif action.lower() == "wyświetl":
+            if not selected_products:
+                print("Lista wybranych produktów jest pusta.")
+            else:
+                print("Aktualnie wybrane produkty:")
+                for i, product in enumerate(selected_products):
+                    print(f"{i + 1}. {product['Nazwa']}")
+        else:
+            print("Niepoprawna akcja, spróbuj ponownie.")
 
 def view_nutriens():
     totals = calculate_totals(selected_products)
