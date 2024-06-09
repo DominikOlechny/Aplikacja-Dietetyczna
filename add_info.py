@@ -12,7 +12,7 @@
 import pandas as pd
 from login_panel import readCSV, login_user
 
-def get_gender():
+def get_gender(): #pobranie informacji o plci 
 
 
     print("PODAJ PŁEĆ")
@@ -40,7 +40,7 @@ def get_gender():
             print("Błąd: Podaj poprawne dane (wybierz 1 lub 2)")
             continue  # Kontynuuj pętlę, aby ponownie zapytać o poprawną wartość
 
-def get_weight():
+def get_weight(): #pobranie infromacji o wadze
     while True:
         try:
             Weight = float(input("Podaj swoją wagę: "))
@@ -52,7 +52,7 @@ def get_weight():
             print("Błąd: Podaj prawidłową wagę (użyj cyfr)")  # Komunikat o błędzie, jeśli wprowadzono nieprawidłowe dane
 
     
-def get_height():
+def get_height(): #pobranie informacji o wzroscie
     while True:
         try:
             Height = float(input("Podaj swój wzrost: "))
@@ -63,7 +63,7 @@ def get_height():
         except ValueError:
             print("Podaj prawidłowy wzrost (użyj cyfr)")  # Komunikat o błędzie, jeśli wprowadzono nieprawidłowe dane
     
-def get_age():
+def get_age(): #pobranie informacji o wzroscie
     while True:
         try:
             Age = int(input("Podaj swój wiek: "))
@@ -74,7 +74,7 @@ def get_age():
         except ValueError:
             print("Nieprawidłowe dane podaj swój wiek w liczbach")  # Komunikat o błędzie, jeśli wprowadzono nieprawidłowe dane
 
-def get_movement():
+def get_movement(): #pobranie informacji o aktywnosci fizycznej
     print("1 - brak (osoba chora, leżąca w łóżku")
     print("2 - mała (osoba wykonująca pracę siedzącą")
     print("3 - umiarkowana (osoba wykonująca pracę na stojąco")
@@ -121,7 +121,7 @@ def get_movement():
             continue  # Kontynuuj pętlę, aby ponownie zapytać o poprawną wartość
 
 
-def get_CPM(gender, weight, hight, age, activity):
+def get_CPM(gender, weight, hight, age, activity): #OPLICZANIE CPM I PPM
     #PPM przemiana materii
     #dla kobiet: PPM = 655,1 + (9,563 x masa ciała w kilogramach) + (1,85 x wzrost w centymetrach) – (4,676 x wiek w latach)
     #dla mężczyzn: PPM = 66,473 + (13,752 x masa ciała w kilogramach) + (5,003 x wzrost w centymetrach) – (6,775 x wiek w latach)1
@@ -144,11 +144,11 @@ def get_fats(CPM): #Dzienne zapotrzebowanie na tłuszcz
     fats = (CPM - (CPM * 0.75)) / 9
     return fats
 
-def get_carbs(CPM):
+def get_carbs(CPM): #obliczanie zapotrzebowania na weglowodany
     carbs = CPM*0.5/4 #ze wzoru kcal*50%/4
     return carbs
 
-def info(login, path_users_info):
+def info(login, path_users_info): #wstawienie wartosci do CSV
     users = pd.read_csv(path_users_info, delimiter=';')
     gender = get_gender()
     weight = get_weight()

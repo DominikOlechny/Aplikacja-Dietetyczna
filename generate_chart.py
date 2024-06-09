@@ -30,7 +30,7 @@ def generate_macro_chart(login):
     for ax, macro, label in zip(axs.flatten(), macros, labels):
         categories = ['OCZEKIWANE', 'AKTUALNE']
         values = [targets[macro], totals[macro]]
-        colors = ['green', 'blue'] if totals[macro] < targets[macro] else ['green', 'red'] if totals[macro] > targets[macro] else ['green', 'green']
+        colors = ['green', 'blue'] if totals[macro] < targets[macro] else ['green', 'red'] if totals[macro] > targets[macro] else ['green', 'green'] #kolory wykresow, jesli wartosci sa mniejsze niz zakladane to jest niebieski, jesli idelny to zielony a jesli powyzej to czerowny.
         ax.bar(categories, values, color=colors)
         ax.set_title(f'{label} OCZEKIWANE VS AKTUALNE')
         ax.set_ylabel('ILOSC')

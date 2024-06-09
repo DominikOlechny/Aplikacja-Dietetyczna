@@ -11,7 +11,7 @@ df = pd.read_csv(file_path, delimiter=';')
 def find_products(fragment):
     return df[df['Nazwa'].str.contains(fragment, case=False)]
 
-def select_product(product_name, selected_products):
+def select_product(product_name, selected_products): #Funkcja umozliwia uzytkownikowi wybor produktu na podstawie nazwy. jesli znajdzie kilka produktow user msui podac jeden z nich,
     matching_products = find_products(product_name)
     if len(matching_products) == 0:
         print(f'Produkt "{product_name}" nie został znaleziony.')
@@ -70,7 +70,7 @@ def calculate_totals(selected_products):
 # Lista na wybrane produkty
 selected_products = []
 
-def choose_produts():
+def choose_produts(): #funkcja pozwala dodawac usuwac i wyswietlac produkty, przerwa nastepuje za pomoca komendy stop, wyswietlenie za pomoca wyswietl, a usun za pomoca usun
     while True:
         action = input("Wpisz 'dodaj', aby dodać produkt, 'usuń', aby usunąć produkt z listy, 'wyświetl' aby zobaczyć aktualną listę (wpisz 'stop', aby zakończyć): ")
         if action.lower() == "stop":
@@ -78,10 +78,10 @@ def choose_produts():
         elif action.lower() == "dodaj":
             product = input("Podaj nazwę produktu, który chcesz dodać do listy: ")
             select_product(product, selected_products)
-        elif action.lower() == "usuń":
+        elif action.lower() == "usun":
             product = input("Podaj nazwę produktu, który chcesz usunąć z listy: ")
             remove_product(product, selected_products)
-        elif action.lower() == "wyświetl":
+        elif action.lower() == "wyswietl":
             if not selected_products:
                 print("Lista wybranych produktów jest pusta.")
             else:
@@ -91,7 +91,7 @@ def choose_produts():
         else:
             print("Niepoprawna akcja, spróbuj ponownie.")
 
-def view_nutriens():
+def view_nutriens(): #funkcja wyswietla wartosc odzywczych dla wybranych produktow
     totals = calculate_totals(selected_products)
     print("Suma wartości odżywczych dla wybranych produktów:")
     print(f'Kalorie: {totals["KCAL"]}')
@@ -100,7 +100,9 @@ def view_nutriens():
     print(f'Tłuszcz: {totals["TLUSZCZ"]}')
     return totals
 
-def save_totals(totals, login):
+
+
+def save_totals(totals, login): #zapisuje sume wartosci odzywczych do csv
     path_users_info = 'users_info.csv'
     users = pd.read_csv(path_users_info, delimiter=';')
     
