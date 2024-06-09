@@ -27,8 +27,7 @@ def get_gender(): #pobranie informacji o plci
             Gender = int(Gender)
         except ValueError:
             print("Błąd: Podaj poprawne dane (wybierz 1 lub 2)")
-            continue  # Kontynuuj pętlę, aby ponownie zapytać o poprawną wartość
-
+            continue  # Kontynuuj petle
         # Sprawdzenie wyboru płci
         if Gender == 1:
             print("Wybrano płeć mężczyzna")
@@ -38,7 +37,7 @@ def get_gender(): #pobranie informacji o plci
             return Gender
         else:
             print("Błąd: Podaj poprawne dane (wybierz 1 lub 2)")
-            continue  # Kontynuuj pętlę, aby ponownie zapytać o poprawną wartość
+            continue  # Kontynuluj pentle
 
 def get_weight(): #pobranie infromacji o wadze
     while True:
@@ -49,7 +48,7 @@ def get_weight(): #pobranie infromacji o wadze
             else:
                 print("Podaj prawidłową wagę (wartość powinna być większa od 0)")
         except ValueError:
-            print("Błąd: Podaj prawidłową wagę (użyj cyfr)")  # Komunikat o błędzie, jeśli wprowadzono nieprawidłowe dane
+            print("Błąd: Podaj prawidłową wagę (użyj cyfr)")  # Komunikat o wprowadzeniu blednej opcji, nastepnie funkcja wywalola sie ponownie 
 
     
 def get_height(): #pobranie informacji o wzroscie
@@ -61,7 +60,7 @@ def get_height(): #pobranie informacji o wzroscie
             else:
                 print("Podaj prawidłowy wzrost (wartość powinna być większa od 0)")
         except ValueError:
-            print("Podaj prawidłowy wzrost (użyj cyfr)")  # Komunikat o błędzie, jeśli wprowadzono nieprawidłowe dane
+            print("Podaj prawidłowy wzrost (użyj cyfr)")  # Komunikat o wprowadzeniu blednej opcji, nastepnie funkcja wywalola sie ponownie 
     
 def get_age(): #pobranie informacji o wzroscie
     while True:
@@ -72,7 +71,7 @@ def get_age(): #pobranie informacji o wzroscie
             else:
                 print("Podaj wiek, wartość musi być większa niż 0")
         except ValueError:
-            print("Nieprawidłowe dane podaj swój wiek w liczbach")  # Komunikat o błędzie, jeśli wprowadzono nieprawidłowe dane
+            print("Nieprawidłowe dane podaj swój wiek w liczbach")  # Komunikat o wprowadzeniu blednej opcji, nastepnie funkcja wywalola sie ponownie 
 
 def get_movement(): #pobranie informacji o aktywnosci fizycznej
     print("1 - brak (osoba chora, leżąca w łóżku")
@@ -89,7 +88,7 @@ def get_movement(): #pobranie informacji o aktywnosci fizycznej
             Movement = int(Movement)
         except ValueError:
             print("Błąd: Podaj poprawne dane (wybierz 1 lub 6)")
-            continue  # Kontynuuj pętlę, aby ponownie zapytać o poprawną wartość
+            continue  #petla wywylouje sie jeszcze raz aby zapytac o porawna wartosc
 
         # Sprawdzenie aktywnosci
         if Movement == 1:
@@ -118,7 +117,7 @@ def get_movement(): #pobranie informacji o aktywnosci fizycznej
             return Activity
         else:
             print("Błąd: Podaj poprawne dane (wybierz 1 lub 6)")
-            continue  # Kontynuuj pętlę, aby ponownie zapytać o poprawną wartość
+            continue  #petla wywylouje sie jeszcze raz aby zapytac o porawna wartosc
 
 
 def get_CPM(gender, weight, hight, age, activity): #OPLICZANIE CPM I PPM
